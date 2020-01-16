@@ -4,14 +4,15 @@ import App from './App';
 
 test('renders number of items in cart', () => {
   const { getByText, getByTestId } = render(<App />);
-  expect(getByTestId("cart")).toBeInTheDocument();
   expect(getByTestId('cart')).toHaveTextContent('0')
+  // regex match
   expect(getByText(/your cart has/i)).toBeInTheDocument();
-  fireEvent.click(getByTestId('add'));
+  // simulate event
+  fireEvent.click(getByTestId('Mouse-2'));
   expect(getByTestId('cart')).toHaveTextContent('1')
 });
 
-// bad use mock
+// bad, use mock instead see restshop.test.js
 // it('gets users from api', async () => {
 //   const { getByText, getByTestId } = render(<App />);
 //   await wait(() => getByText('Leanne Graham'))

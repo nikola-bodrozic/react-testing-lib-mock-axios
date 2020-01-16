@@ -1,5 +1,5 @@
 import React from "react";
-import { render, wait} from '@testing-library/react';
+import { render, wait } from '@testing-library/react';
 import RestShop from './restshop'
 import axios from 'axios';
 
@@ -8,9 +8,11 @@ jest.mock('axios')
 describe('gets users from mock', () => {
   it('fetches successfully data from mock', async () => {
     const mockCall = axios.get.mockResolvedValue({data:[{id:1, name:"testLeanne"}]});
-    const { getByText, getByTestId } = render(<RestShop />);
+    const { debug, getByText, getByTestId } = render(<RestShop />);
+    // debug() // print DOM
     // wait for DOM to update
     await wait(() => getByTestId('resolved'))
+    // debug()
     const firstUser = getByText('testLeanne')
     expect(firstUser).toBeDefined()
     // The mock function is called once

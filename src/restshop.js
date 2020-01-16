@@ -18,7 +18,7 @@ export default function RestShop() {
   return (
     <span data-testid="resolved">
       {users.map(user => (
-        <div className="extra" key={user.id}>{user.name}</div>
+        <div key={user.id}>{user.name}</div>
       ))}
     </span>
   );
