@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 
-import Shop from './shop';
-import Header from './header';
-import RestShop from './restshop'
+import Shop from './components/shop';
+import Header from './components/header';
+import RestShop from './components/restshop'
 
-import CartContextProvider from './CartContext';
+import CartContextProvider from './context/CartContext';
 
 function App() {
   return (

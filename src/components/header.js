@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CartContext } from './CartContext'
+import { CartContext } from '../context/CartContext'
 class Navbar extends Component {
   static contextType = CartContext
 
