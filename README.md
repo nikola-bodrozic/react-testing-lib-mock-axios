@@ -2,10 +2,15 @@
 
 Mock Axios call. useEffect useState useContext Hook. Context with function and initial value. Context in functional component. Context in class component. Debug and print DOM.
 
-run test in watch mode
+run test in watch mode on developer machine
 
-`yarn test --coverage --watchAll=true`
+`yarn test`
 
-open web page with coverage
+run test in CI mode
 
-`./coverage/index.html`
+`CI=true yarn test`
+
+In docker 
+
+`docker build -t reactapp:1.0 .`
+`docker run --name react-app reactapp:1.0`
