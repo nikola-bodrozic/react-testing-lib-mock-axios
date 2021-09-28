@@ -16,7 +16,7 @@ run test in CI mode
 
 Docker
 
-sh```
+```shell
 docker build -f Dockerfile -t client .
 docker run -it -p 3000:3000 client
 ```
