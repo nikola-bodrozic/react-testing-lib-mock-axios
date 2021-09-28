@@ -13,3 +13,10 @@ run test in watch mode on developer machine
 run test in CI mode
 
 `CI=true yarn test`
+
+Docker
+
+sh```
+docker build -f Dockerfile -t client .
+docker run -it -p 3000:3000 client
+```
