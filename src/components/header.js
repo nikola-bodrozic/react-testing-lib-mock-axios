@@ -11,7 +11,7 @@ class Navbar extends Component {
           return (
             <nav>
               <ul>
-                <li>your cart has <span data-testid="cart">{numOfPrducts}</span> items</li>
+                <li>your cart has <span data-testid="cart">{numOfPrducts}</span> products</li>
               </ul>
             </nav>
           )
