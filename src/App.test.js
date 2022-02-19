@@ -1,22 +1,32 @@
-import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup, waitFor, getAllByTestId } from '@testing-library/react';
 import App from './App';
+import axios from 'axios';
 
-test('renders number of items in cart', () => {
-  const { getByText, getByTestId } = render(<App />);
-  expect(getByTestId('cart')).toHaveTextContent('0')
-  // regex match
-  expect(getByText(/your cart has/i)).toBeInTheDocument();
-  // simulate event
-  fireEvent.click(getByTestId('Mouse-2'));
-  expect(getByTestId('cart')).toHaveTextContent('1')
+jest.mock('axios')
+
+const getApiResponse = {
+  data: [
+    { id: 1, name: "testLeanne" },
+    { id: 2, name: "testName" }
+  ]
+}
+
+describe('App component', () => {
+  test('it displays a row for each user', async () => {
+
+    const mockCall = axios.get.mockResolvedValue(getApiResponse);
+    const { debug, getByTestId, getAllByTestId } = render(<App />);
+    expect(getByTestId('loader')).toBeInTheDocument()
+    //debug() // print initial DOM
+    // wait for DOM to update after axios get
+    await waitFor(() => getByTestId('user-list'))
+    //debug() // print new DOM
+    const fakeUsers = getAllByTestId('user-item')
+    expect(fakeUsers).toHaveLength(2)
+    // The mock function is called once
+    expect(mockCall.mock.calls.length).toBe(1);
+    // first argument of the first call
+    expect(mockCall.mock.calls[0][0]).toBe('https://jsonplaceholder.typicode.com/users')
+
+  });
 });
-
-// bad, use mock instead see restshop.test.js
-// it('gets users from api', async () => {
-//   const { getByText, getByTestId } = render(<App />);
-//   await wait(() => getByText('Leanne Graham'))
-//   const firstUser = getByText('Leanne Graham')
-//   expect(firstUser).toBeDefined()
-// })
-
