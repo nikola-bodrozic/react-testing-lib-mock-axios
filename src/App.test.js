@@ -23,7 +23,7 @@ describe('App component', () => {
     let mockCall = axios.get.mockResolvedValue(getMockedUsers);
     const { debug, getByTestId, getAllByTestId, getByText } = render(<App />);
 
-    expect(getByTestId('loader')).toBeInTheDocument()
+    expect(getByTestId('loader')).toBeInTheDocument
     // debug() // print initial DOM
 
     // wait for DOM to update after axios get
