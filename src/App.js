@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>Users:</div>
+      <div data-testid="ancestor" role='usersWrap'><span data-testid="descendant">Users:</span></div>
       {users.length ? (<>
         <ul data-testid="user-list">
           {users.map(user => (
