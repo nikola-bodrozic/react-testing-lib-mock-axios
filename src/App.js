@@ -8,23 +8,17 @@ function App() {
 
   // Load the data from the server
   useEffect(() => {
-    let mounted = true;
-
     const getUsers = async () => {
       const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-      if (mounted) {
-        setUsers(response.data);
-      }
+      setUsers(response.data);
     };
-
+    
     getUsers();
-
-    return () => { mounted = false; }
   }, []);
 
   const getTitle = async () => {
     const response = await axios.get('https://jsonplaceholder.typicode.com/users/1/posts');
-      setTitle(response.data[0].title);
+    setTitle(response.data[0].title);
   }
 
   return (
@@ -40,7 +34,7 @@ function App() {
         </ul>
         <button data-testid="get-posts" onClick={getTitle}>click me</button>
         <div data-testid='title-holder'>{title}</div>
-        </>
+      </>
       ) : (
         <div data-testid="loader">Loading...</div>
       )}
