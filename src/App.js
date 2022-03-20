@@ -9,10 +9,11 @@ function App() {
   // Load the data from the server
   useEffect(() => {
     const getUsers = async () => {
+      await new Promise(resolve => setTimeout(resolve, 3000)); // 3 sec wait to see Loading...
       const response = await axios.get('https://jsonplaceholder.typicode.com/users');
       setUsers(response.data);
     };
-    
+
     getUsers();
   }, []);
 
