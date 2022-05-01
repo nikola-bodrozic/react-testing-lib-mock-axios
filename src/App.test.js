@@ -19,9 +19,9 @@ const getMockedTitle = {
 describe("App component", () => {
   test("it displays a row for each user", async () => {
     let mockCall = axios.get.mockResolvedValue(getMockedUsers);
-    const { debug, getByTestId, getAllByTestId, getByText } = render(<App />);
+    const { debug, getByTestId, getAllByTestId, getByText, getAllByText } = render(<App />);
 
-    expect(getByTestId("loader")).toBeInTheDocument;
+    expect(getByTestId("loader")).toBeInTheDocument();
 
     const ancestor = getByTestId("ancestor");
     const descendant = getByTestId("descendant");
@@ -42,7 +42,7 @@ describe("App component", () => {
     );
 
     mockCall = axios.get.mockResolvedValue(getMockedTitle);
-    fireEvent.click(getByText("click me"));
+    fireEvent.click(getAllByText("Show one title")[0]);
     expect(mockCall.mock.calls.length).toBe(2);
     // first argument of the second call
     expect(mockCall.mock.calls[1][0]).toBe(

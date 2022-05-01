@@ -9,7 +9,6 @@ function App() {
   // Load the data from the server
   useEffect(() => {
     const getUsers = async () => {
-      await new Promise(resolve => setTimeout(resolve, 3000)); // 3 sec wait to see Loading...
       const response = await axios.get('https://jsonplaceholder.typicode.com/users');
       setUsers(response.data);
     };
@@ -17,8 +16,8 @@ function App() {
     getUsers();
   }, []);
 
-  const getTitle = async () => {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/users/1/posts');
+  const getTitle = async (id) => {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/users/'+id+'/posts');
     setTitle(response.data[0].title);
   }
 
@@ -29,11 +28,11 @@ function App() {
         <ul data-testid="user-list">
           {users.map(user => (
             <li key={user.id} className="user" data-testid="user-item">
-              <span>{user.name}</span> <span>{user.username}</span>
+              <span>{user.name}</span> <span>{user.username}</span> <button data-testid="get-posts" onClick={()=>getTitle(user.id)}>Show one title</button>
             </li>
           ))}
         </ul>
-        <button data-testid="get-posts" onClick={getTitle}>click me</button>
+        <hr width='80%'/>
         <div data-testid='title-holder'>{title}</div>
       </>
       ) : (
